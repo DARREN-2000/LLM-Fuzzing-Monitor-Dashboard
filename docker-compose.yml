@@ -1,0 +1,40 @@
+# LLM Fuzz Monitor — Docker Compose
+# Start the monitor alongside a local Ollama instance.
+
+services:
+  # ── Ollama (local LLM inference) ──────────────────────────
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── LLM Fuzz Monitor ─────────────────────────────────────
+  monitor:
+    build: .
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      - OLLAMA_ENDPOINT=http://ollama:11434
+    volumes:
+      - ./config:/workspace/config:ro
+      - ./results:/workspace/results
+      - ./experiments:/workspace/experiments
+    command: ["--config", "/workspace/config/config.yaml"]
+
+volumes:
+  ollama_data:
