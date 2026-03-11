@@ -3220,7 +3220,7 @@ class ProcessMonitor:
             }
             
             # Save report
-            report_file = self.data_manager.reports_dir / f"session_report_{session.session_id}.json"
+            report_file = self.data_manager.subdirs['reports'] / f"session_report_{session.session_id}.json"
             with open(report_file, 'w') as f:
                 json.dump(report, f, indent=2, default=str)
             
@@ -3343,7 +3343,7 @@ class ProcessMonitor:
             summary['language_distribution'] = language_counts
             
             # Save summary report
-            summary_file = self.data_manager.reports_dir / f"daily_summary_{datetime.now().strftime('%Y%m%d')}.json"
+            summary_file = self.data_manager.subdirs['reports'] / f"daily_summary_{datetime.now().strftime('%Y%m%d')}.json"
             with open(summary_file, 'w') as f:
                 json.dump(summary, f, indent=2, default=str)
             
