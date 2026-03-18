@@ -134,6 +134,34 @@ The `docker-compose.yml` starts:
 - **Ollama** — GPU-accelerated local inference on port `11434`
 - **Monitor** — the experiment runner and CLI
 
+### Free & Easy Demo Deployment (Recommended)
+
+Use the CPU-friendly demo stack for a quick walkthrough on any machine:
+
+```bash
+# Start demo stack (Ollama + model pull + monitor)
+make demo-up
+
+# Watch monitor logs
+docker compose -f docker-compose.demo.yml logs -f monitor
+```
+
+This demo stack is intentionally free and simple:
+- no cloud account required
+- no paid services required
+
+Pull a lightweight model (recommended for first demo):
+
+```bash
+docker compose -f docker-compose.demo.yml exec ollama ollama pull tinyllama
+```
+
+Stop the demo stack:
+
+```bash
+make demo-down
+```
+
 ---
 
 ## Configuration
@@ -226,6 +254,7 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the full contribution workflow.
 ├── docs/                          # Architecture documentation
 ├── Dockerfile                     # Multi-stage production image
 ├── docker-compose.yml             # Ollama + monitor stack
+├── docker-compose.demo.yml        # Free CPU-friendly demo stack
 ├── Makefile                       # Dev shortcuts
 ├── pyproject.toml                 # PEP 621 packaging
 ├── requirements.txt               # Production dependencies
