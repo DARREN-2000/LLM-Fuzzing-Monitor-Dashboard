@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LLM Fuzzing Monitor Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>LLM Fuzzing Monitor Dashboard</h1>
+        <p>Static dashboard for CI fuzz monitor session exports.</p>
+      </header>
+
+      <section class="card controls">
+        <h2>Load data</h2>
+        <p>Upload one or more <code>session.json</code> files exported by the monitor, or use bundled sample data.</p>
+        <div class="control-row">
+          <input id="sessionFiles" type="file" accept=".json,application/json" multiple />
+          <button id="loadSample" type="button">Load sample data</button>
+        </div>
+        <p id="status" class="status">Loading sample data…</p>
+      </section>
+
+      <section class="grid kpis" id="kpis"></section>
+
+      <section class="card">
+        <h2>Provider distribution</h2>
+        <div id="providerBars" class="bars"></div>
+      </section>
+
+      <section class="card">
+        <h2>Sessions</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Session ID</th>
+                <th>Provider</th>
+                <th>Model</th>
+                <th>Status</th>
+                <th>Drivers</th>
+                <th>Vulnerabilities</th>
+                <th>Duration (h)</th>
+                <th>Cost (USD)</th>
+              </tr>
+            </thead>
+            <tbody id="sessionRows"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

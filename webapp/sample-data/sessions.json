@@ -1,0 +1,38 @@
+[
+  {
+    "session_id": "spark_101_20260410_demo_01",
+    "llm_provider": "openai",
+    "llm_model": "gpt-4o",
+    "status": "completed",
+    "fuzz_drivers_generated": 16,
+    "security_vulnerabilities_found": 6,
+    "total_duration_ms": 7260000,
+    "estimated_cost_usd": 5.42,
+    "total_tokens_consumed": 412233,
+    "total_api_calls": 165
+  },
+  {
+    "session_id": "spark_102_20260411_demo_02",
+    "llm_provider": "anthropic",
+    "llm_model": "claude-3-7-sonnet",
+    "status": "completed",
+    "fuzz_drivers_generated": 14,
+    "security_vulnerabilities_found": 4,
+    "total_duration_ms": 6840000,
+    "estimated_cost_usd": 4.98,
+    "total_tokens_consumed": 376421,
+    "total_api_calls": 152
+  },
+  {
+    "session_id": "spark_103_20260411_demo_03",
+    "llm_provider": "ollama",
+    "llm_model": "deepseek-coder:33b",
+    "status": "completed",
+    "fuzz_drivers_generated": 12,
+    "security_vulnerabilities_found": 5,
+    "total_duration_ms": 7920000,
+    "estimated_cost_usd": 0,
+    "total_tokens_consumed": 355903,
+    "total_api_calls": 140
+  }
+]

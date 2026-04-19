@@ -116,6 +116,26 @@ python -m llm_fuzz_monitor.experiments.runner \
 llm-fuzz-monitor --config config/config.yaml
 ```
 
+### 5. Web Dashboard (GitHub Pages)
+
+A static dashboard is available in [`webapp/`](webapp/) and can be deployed with GitHub Pages.
+
+- Local preview:
+  ```bash
+  cd webapp
+  python3 -m http.server 8080
+  ```
+  Open: `http://localhost:8080`
+
+- GitHub Pages deployment:
+  - Workflow: [`.github/workflows/pages.yml`](.github/workflows/pages.yml)
+  - It automatically deploys `webapp/` on pushes to `main` that touch web app files.
+  - In repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**.
+
+The dashboard can load:
+- bundled sample data from `webapp/sample-data/sessions.json`
+- uploaded monitor export files (`session.json`) for real-session visualization
+
 ---
 
 ## Docker
