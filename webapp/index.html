@@ -17,10 +17,38 @@
         <h2>Load data</h2>
         <p>Upload one or more <code>session.json</code> files exported by the monitor, or use bundled sample data.</p>
         <div class="control-row">
-          <input id="sessionFiles" type="file" accept=".json,application/json" multiple />
+          <input id="sessionFiles" type="file" accept=".json,application/json" multiple aria-label="Upload session JSON files" />
           <button id="loadSample" type="button">Load sample data</button>
+          <button id="clearData" type="button">Clear data</button>
         </div>
         <p id="status" class="status">Loading sample data…</p>
+      </section>
+
+      <section class="card controls">
+        <h2>Explore data</h2>
+        <div class="control-row">
+          <label class="control-item">
+            Provider
+            <select id="providerFilter" aria-label="Filter by provider">
+              <option value="all">All providers</option>
+            </select>
+          </label>
+          <label class="control-item">
+            Status
+            <select id="statusFilter" aria-label="Filter by status">
+              <option value="all">All statuses</option>
+            </select>
+          </label>
+          <label class="control-item">
+            Sort by
+            <select id="sortBy" aria-label="Sort sessions">
+              <option value="duration">Duration (high → low)</option>
+              <option value="cost">Cost (high → low)</option>
+              <option value="vulns">Vulnerabilities (high → low)</option>
+              <option value="drivers">Drivers (high → low)</option>
+            </select>
+          </label>
+        </div>
       </section>
 
       <section class="grid kpis" id="kpis"></section>
@@ -48,6 +76,7 @@
             </thead>
             <tbody id="sessionRows"></tbody>
           </table>
+          <p id="emptyState" class="empty hidden">No sessions match the selected filters.</p>
         </div>
       </section>
     </main>

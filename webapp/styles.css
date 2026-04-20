@@ -44,10 +44,12 @@ p {
   display: flex;
   gap: 0.75rem;
   flex-wrap: wrap;
+  align-items: end;
 }
 
 button,
-input[type="file"] {
+input[type="file"],
+select {
   background: #111a2f;
   color: var(--text);
   border: 1px solid #34486e;
@@ -62,6 +64,13 @@ button {
 .status {
   margin-top: 0.6rem;
   color: var(--ok);
+}
+
+.control-item {
+  display: grid;
+  gap: 0.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .grid.kpis {
@@ -121,4 +130,13 @@ td {
   text-align: left;
   border-bottom: 1px solid #253352;
   white-space: nowrap;
+}
+
+.empty {
+  color: var(--muted);
+  margin: 0.8rem 0 0.2rem;
+}
+
+.hidden {
+  display: none;
 }

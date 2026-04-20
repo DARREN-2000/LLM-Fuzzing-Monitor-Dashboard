@@ -4,7 +4,7 @@
 > for C/C++ projects, detects hallucinations, analyses code quality &
 > vulnerabilities, and orchestrates large-scale comparative experiments.
 
-[![CI](https://github.com/DARREN-2000/llm-integration/actions/workflows/ci.yml/badge.svg)](https://github.com/DARREN-2000/llm-integration/actions/workflows/ci.yml)
+[![CI](https://github.com/DARREN-2000/LLM-Fuzzing-Monitor-Dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/DARREN-2000/LLM-Fuzzing-Monitor-Dashboard/actions/workflows/ci.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -80,8 +80,8 @@ See [`docs/architecture.md`](docs/architecture.md) for detailed design decisions
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/DARREN-2000/llm-integration.git
-cd llm-integration
+git clone https://github.com/DARREN-2000/LLM-Fuzzing-Monitor-Dashboard.git
+cd LLM-Fuzzing-Monitor-Dashboard
 
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
@@ -116,25 +116,42 @@ python -m llm_fuzz_monitor.experiments.runner \
 llm-fuzz-monitor --config config/config.yaml
 ```
 
-### 5. Web Dashboard (GitHub Pages)
+### 5. Web Dashboard (Production-ready Static App + GitHub Pages)
 
-A static dashboard is available in [`webapp/`](webapp/) and can be deployed with GitHub Pages.
+The web dashboard is in [`webapp/`](webapp/) and is production-oriented:
+- static hosting (no backend required)
+- safe rendering for uploaded JSON session files
+- KPI cards, provider distribution, sortable/filterable session table
+- sample data bootstrap and clear/reset controls
 
-- Local preview:
-  ```bash
-  cd webapp
-  python3 -m http.server 8080
-  ```
-  Open: `http://localhost:8080`
+#### Live deployment target
+- **GitHub Pages URL**: `https://darren-2000.github.io/LLM-Fuzzing-Monitor-Dashboard/`
+- **Deploy workflow**: [`.github/workflows/pages.yml`](.github/workflows/pages.yml)
+- **Deploy trigger**: pushes to `main` that modify web assets/docs, or manual `workflow_dispatch`
 
-- GitHub Pages deployment:
-  - Workflow: [`.github/workflows/pages.yml`](.github/workflows/pages.yml)
-  - It automatically deploys `webapp/` on pushes to `main` that touch web app files.
-  - In repository settings, set **Pages → Build and deployment → Source** to **GitHub Actions**.
+> If your current branch is not merged to `main` yet, deploy will happen after merge (or manual workflow dispatch from the Actions tab).
 
-The dashboard can load:
-- bundled sample data from `webapp/sample-data/sessions.json`
-- uploaded monitor export files (`session.json`) for real-session visualization
+#### Start the web app locally (recommended first run)
+```bash
+cd webapp
+python3 -m http.server 8080
+```
+Open: `http://localhost:8080`
+
+#### What data can it load?
+- Bundled sample data: `webapp/sample-data/sessions.json`
+- Real monitor exports: one or more uploaded `session.json` files
+- Uploaded files can be either a single session object or an array of sessions
+
+#### Dashboard screenshots
+![Dashboard overview](docs/media/webapp-overview.png)
+![Dashboard filtered by provider](docs/media/webapp-filtered-openai.png)
+
+#### Short demo clips
+![Dashboard demo](docs/media/webapp-demo.gif)
+![Dashboard filter demo](docs/media/webapp-filters-demo.gif)
+
+For full web dashboard operations and troubleshooting, see [`webapp/README.md`](webapp/README.md).
 
 ---
 

@@ -66,7 +66,7 @@ dev = [
 ]
 
 [project.urls]
-Repository = "https://github.com/DARREN-2000/llm-integration"
+Repository = "https://github.com/DARREN-2000/LLM-Fuzzing-Monitor-Dashboard"
 
 [project.scripts]
 llm-fuzz-monitor = "llm_fuzz_monitor.experiments.monitor:main"
