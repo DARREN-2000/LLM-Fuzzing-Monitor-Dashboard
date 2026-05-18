@@ -1,5 +1,5 @@
 # ── LLM Fuzz Monitor ─────────────────────────────────────────
-.PHONY: help install dev lint test test-cov build clean docker-build docker-up
+.PHONY: help install dev lint test test-cov build clean docker-build docker-up demo-up demo-down
 
 PYTHON  ?= python3
 PIP     ?= pip
@@ -50,3 +50,9 @@ docker-up: ## Start services (Ollama + monitor)
 
 docker-down: ## Stop services
 	docker compose down
+
+demo-up: ## Start free local demo stack (CPU-friendly)
+	docker compose -f docker-compose.demo.yml up -d
+
+demo-down: ## Stop free local demo stack
+	docker compose -f docker-compose.demo.yml down
